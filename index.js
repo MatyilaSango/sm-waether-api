@@ -9,6 +9,7 @@ const NUMBER_OF_DAYS = 14;
 
 var data = {
     location: "",
+    full_location: "",
     source: "BBC",
     today_hourly_data: [],
     next_days_data: [],
@@ -29,6 +30,7 @@ const getWeatherByLocation = async (location, res) => {
         const $ = cheerio.load(html)
 
         let location_code = $('.location-search-results__result__link').attr("href")
+        data.full_location = $('.location-search-results__result__link').text().trim()
 
         axios.get(`https://www.bbc.com/weather/${location_code}`).then((response) => {
             const html = response.data;
@@ -107,6 +109,7 @@ app.get("/weather/id/:id", (req, res) => {
     const id = Number(req.params.id);
     var selected_data = {
         location: data.location,
+        full_location: data.full_location,
         source: data.source,
         data: data.next_days_data[id],
     };
