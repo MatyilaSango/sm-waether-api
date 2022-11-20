@@ -9,5 +9,5 @@ Confirms that the api is running.
 /weather/xxxxx - get wather of the city or town you want.
 /weather/id/xxxxx - get weather by id. 0 being to day's date, 1 following day, and so on.
 
-# Deployed version
-Link to the api: [https://sm-weather-api.herokuapp.com/](https://sm-weather-api.herokuapp.com/)
+# Deployed on vercel
+Link to the api: [https://sm-waether-api.vercel.app/](https://sm-waether-api.vercel.app/)
