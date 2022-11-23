@@ -16,10 +16,10 @@ var data = {
 };
 
 const getWeather = (res) => {
-    axios.get(`https://ipinfo.io/`).then((response) => {
-        const html = response.data
-        let my_city = html.city
-        getWeatherByLocation(my_city, res)
+    axios.get(`https://ipinfo.io/`).then( async (response) => {
+        const html = await response.data
+        let my_city = await html.city
+        await getWeatherByLocation(my_city, res)
     })
 }
 
