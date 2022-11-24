@@ -25,8 +25,8 @@ const getWeatherByLocation = async (location, res) => {
         next_days_data: [],
     };
 
-    axios.get(`https://www.bbc.com/weather/search?s=${location}`).then((res) => {
-        const html = res.data
+    axios.get(`https://www.bbc.com/weather/search?s=${location}`).then((results) => {
+        const html = results.data
         const $ = cheerio.load(html)
 
         let location_code = $('.location-search-results__result__link').attr("href")
@@ -82,11 +82,10 @@ const getWeatherByLocation = async (location, res) => {
 
             //---------------------------------------------------//
 
+            res.json(data);
         });
 
     });
-
-    res.json(data);
 
 }
 
