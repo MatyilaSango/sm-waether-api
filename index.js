@@ -7,14 +7,6 @@ const port = process.env.PORT || 3000;
 
 const NUMBER_OF_DAYS = 14;
 
-var data = {
-    location: "",
-    full_location: "",
-    source: "BBC",
-    today_hourly_data: [],
-    next_days_data: [],
-};
-
 const getWeather = (res) => {
     axios.get(`https://ipinfo.io/`).then( async (response) => {
         const html = await response.data
@@ -24,6 +16,14 @@ const getWeather = (res) => {
 }
 
 const getWeatherByLocation = async (location, res) => {
+
+    var data = {
+        location: "",
+        full_location: "",
+        source: "BBC",
+        today_hourly_data: [],
+        next_days_data: [],
+    };
 
     axios.get(`https://www.bbc.com/weather/search?s=${location}`).then((res) => {
         const html = res.data
@@ -103,17 +103,6 @@ app.get("/weather", (req, res) => {
 app.get("/weather/:location", (req, res) => {
     const query = req.params.location
     getWeatherByLocation(query, res)
-});
-
-app.get("/weather/id/:id", (req, res) => {
-    const id = Number(req.params.id);
-    var selected_data = {
-        location: data.location,
-        full_location: data.full_location,
-        source: data.source,
-        data: data.next_days_data[id],
-    };
-    res.json(selected_data);
 });
 
 app.listen(port, () => {
